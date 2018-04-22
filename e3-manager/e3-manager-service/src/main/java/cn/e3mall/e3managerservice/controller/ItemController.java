@@ -31,8 +31,8 @@ public class ItemController {
 
 
     @ResponseBody
-    @RequestMapping("/getByPage")
-    public EasyUIDataGridResult getByPage(int page,int rows) {
+    @RequestMapping("/list")
+    public EasyUIDataGridResult list(int page,int rows) {
         logger.info("getByPage pageNum = " + page);
         EasyUIDataGridResult result = itemService.getItemList(page, rows);
         return result;

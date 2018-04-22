@@ -5,7 +5,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 import cn.e3mall.common.pojo.EasyUIDataGridResult;
+import cn.e3mall.common.pojo.EasyUITreeNode;
 import cn.e3mall.e3managerpojo.pojo.TbItem;
 
 /**
@@ -21,7 +24,11 @@ public interface ItemFeignClient {
     TbItem getById(@PathVariable("id") Long id);
 
     // 分页查询
-    @GetMapping("/item/getByPage")
+    @GetMapping("/item/list")
     EasyUIDataGridResult getByPage(@RequestParam("page") int page,@RequestParam("rows") int rows);
+
+    // 分类查询 查询某个分类下面的所有子分类
+    @GetMapping("/item/cat/list")
+    List<EasyUITreeNode> getItemCatList(@RequestParam(value = "parentId",defaultValue = "0") long parentId);
 
 }

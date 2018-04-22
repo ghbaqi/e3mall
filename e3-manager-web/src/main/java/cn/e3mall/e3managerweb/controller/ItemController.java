@@ -5,10 +5,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.List;
+
 import cn.e3mall.common.pojo.EasyUIDataGridResult;
+import cn.e3mall.common.pojo.EasyUITreeNode;
 import cn.e3mall.e3managerpojo.pojo.TbItem;
 import cn.e3mall.e3managerweb.feign.ItemFeignClient;
 
@@ -38,5 +42,13 @@ public class ItemController {
     public EasyUIDataGridResult getByPage(Integer page, Integer rows) {
         EasyUIDataGridResult gridResult = itemFeignClient.getByPage(page, rows);
         return gridResult;
+    }
+
+
+    @RequestMapping("/cat/list")
+    @ResponseBody
+    public List<EasyUITreeNode> getItemCatList(@RequestParam(value = "id",defaultValue = "0") long parentId) {
+        List<EasyUITreeNode> catList = itemFeignClient.getItemCatList(parentId);
+        return catList;
     }
 }
