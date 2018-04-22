@@ -45,6 +45,7 @@ public class ItemController {
     }
 
 
+    // 分类查询
     @RequestMapping("/cat/list")
     @ResponseBody
     public List<EasyUITreeNode> getItemCatList(@RequestParam(value = "id",defaultValue = "0") long parentId) {
