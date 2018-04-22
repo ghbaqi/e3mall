@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
+import cn.e3mall.common.pojo.EasyUIDataGridResult;
 import cn.e3mall.e3managerpojo.pojo.TbItem;
 import cn.e3mall.e3managerweb.feign.ItemFeignClient;
 
@@ -29,5 +30,13 @@ public class ItemController {
 //        return item;
         TbItem tbItem = itemFeignClient.getById(id);
         return tbItem;
+    }
+
+
+    @RequestMapping("/list")
+    @ResponseBody
+    public EasyUIDataGridResult getByPage(Integer page, Integer rows) {
+        EasyUIDataGridResult gridResult = itemFeignClient.getByPage(page, rows);
+        return gridResult;
     }
 }

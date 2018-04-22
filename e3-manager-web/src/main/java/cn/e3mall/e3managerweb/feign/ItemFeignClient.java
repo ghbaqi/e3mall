@@ -3,7 +3,9 @@ package cn.e3mall.e3managerweb.feign;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import cn.e3mall.common.pojo.EasyUIDataGridResult;
 import cn.e3mall.e3managerpojo.pojo.TbItem;
 
 /**
@@ -17,5 +19,9 @@ public interface ItemFeignClient {
 
     @GetMapping("/item/getById/{id}")
     TbItem getById(@PathVariable("id") Long id);
+
+    // 分页查询
+    @GetMapping("/item/getByPage")
+    EasyUIDataGridResult getByPage(@RequestParam("page") int page,@RequestParam("rows") int rows);
 
 }
