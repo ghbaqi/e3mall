@@ -21,4 +21,14 @@ public class ItemServiceTest {
         TbItem item = itemService.getById(536563);
         System.out.println("item = "+item);
     }
+
+
+    @Test
+    public void testSave() {
+        TbItem item = itemService.getById(536563);
+        item.setBarcode("1111");
+        item.setPrice(111L);
+        item.setTitle("111");
+        itemService.saveItem(item,"111");
+    }
 }
