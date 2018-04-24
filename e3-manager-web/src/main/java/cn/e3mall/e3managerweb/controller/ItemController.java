@@ -18,6 +18,13 @@ import cn.e3mall.common.utils.E3Result;
 import cn.e3mall.e3managerpojo.pojo.TbItem;
 import cn.e3mall.e3managerweb.feign.ItemFeignClient;
 
+/**
+ * 商品查询
+ * 分类树形选择
+ * 商品分页查询
+ * <p>
+ * TODO 商品修改、商品删除、上架下架
+ */
 @Controller
 @RequestMapping("/item")
 public class ItemController {
@@ -32,8 +39,8 @@ public class ItemController {
     @RequestMapping("/getById/{id}")
     @ResponseBody
     public TbItem getById(@PathVariable Long id) {
-//        TbItem item = restTemplate.getForObject("http://MANAGER-SERVICE/item/getById/"+id, TbItem.class);
-//        return item;
+        //        TbItem item = restTemplate.getForObject("http://MANAGER-SERVICE/item/getById/"+id, TbItem.class);
+        //        return item;
         TbItem tbItem = itemFeignClient.getById(id);
         return tbItem;
     }
@@ -50,22 +57,22 @@ public class ItemController {
     // 分类查询
     @RequestMapping("/cat/list")
     @ResponseBody
-    public List<EasyUITreeNode> getItemCatList(@RequestParam(value = "id",defaultValue = "0") long parentId) {
+    public List<EasyUITreeNode> getItemCatList(@RequestParam(value = "id", defaultValue = "0") long parentId) {
         List<EasyUITreeNode> catList = itemFeignClient.getItemCatList(parentId);
         return catList;
     }
 
     // 保存
-    @RequestMapping(value = "/save",method = RequestMethod.POST)
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseBody
-    public E3Result save(TbItem item,String desc) {
-//        String title = item.getTitle();
-//        HashMap<String, Object> map = new HashMap<>();
-//        map.put("title", title);
-//        map.put("price",111L);
-//        HashMap<String, Object> map = new HashMap<>();
+    public E3Result save(TbItem item, String desc) {
+        //        String title = item.getTitle();
+        //        HashMap<String, Object> map = new HashMap<>();
+        //        map.put("title", title);
+        //        map.put("price",111L);
+        //        HashMap<String, Object> map = new HashMap<>();
 
-        E3Result result = itemFeignClient.save(item,desc);
+        E3Result result = itemFeignClient.save(item, desc);
         return result;
     }
 }
