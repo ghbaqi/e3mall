@@ -1,4 +1,4 @@
-package cn.e3mall.e3managerservice;
+package cn.e3mall.e3managerservice.service;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
